@@ -13,7 +13,7 @@ import vn.khanhann.webbansach_backend.entity.TheLoai;
 
 @Configuration
 public class MethodRestConfig implements RepositoryRestConfigurer {
-    private String url = "http://localhost:8080";
+    private String url = "http://localhost:3000";
     @Autowired
     private EntityManager entityManager;
     @Override
@@ -24,6 +24,10 @@ public class MethodRestConfig implements RepositoryRestConfigurer {
                         .stream().map(Type::getJavaType)
                         .toArray(Class[]::new)
         );
+
+        cors.addMapping("/**")
+                .allowedOrigins(url)
+                .allowedMethods("GET", "POST", "PUT", "DELETE");
 
         HttpMethod[] chanCacPhuongThuc = {
                 HttpMethod.DELETE,
