@@ -7,4 +7,5 @@ import vn.khanhann.webbansach_backend.entity.Quyen;
 @RepositoryRestResource(path = "quyen")
 
 public interface QuyenRepository extends JpaRepository<Quyen, Integer> {
+    public Quyen findByTenQuyen(String tenQuyen);
 }

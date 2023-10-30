@@ -30,7 +30,7 @@ public class NguoiDung {
     private String matKhau;
 
     @Column(name = "gioi_tinh")
-    private char gioiTinh;
+    private Character gioiTinh;
 
     @Column(name = "email", length = 256)
     private String email;
@@ -44,6 +44,13 @@ public class NguoiDung {
     @Column(name = "dia_chi_giao_hang", length = 256)
     private String diaChiGiaoHang;
 
+    @Column(name = "da_kich_hoat")
+    private boolean daKichHoat;
+
+    @Column(name = "ma_kich_hoat")
+    private String maKichHoat;
+
+
     @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<SuDanhGia> danhSachSuDanhGia;
 
@@ -53,7 +60,7 @@ public class NguoiDung {
     @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<DonHang> danhSachDonHang;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JoinTable(
             name = "nguoidung_quyen",
             joinColumns = @JoinColumn(name = "ma_nguoi_dung"),

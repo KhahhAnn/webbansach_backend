@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import vn.khanhann.webbansach_backend.entity.NguoiDung;
-import vn.khanhann.webbansach_backend.service.TaiKhoanService;
+import vn.khanhann.webbansach_backend.service.impl.TaiKhoanService;
 
 @RestController
 @RequestMapping("/tai-khoan")
@@ -18,5 +18,11 @@ public class TaiKhoanController {
     public ResponseEntity<?> danKyNguoiDung(@Validated @RequestBody NguoiDung nguoiDung) {
         ResponseEntity<?> responseEntity = this.taiKhoanService.dangKyNguoiDung(nguoiDung);
         return responseEntity;
+    }
+
+    @GetMapping("/kich-hoat")
+    public ResponseEntity<?> kichHoatTaiKhoan(@RequestParam String email, @RequestParam String maKichHoat) {
+        ResponseEntity<?> response = this.taiKhoanService.kichHoatTaiKhoan(email, maKichHoat);
+        return response;
     }
 }
